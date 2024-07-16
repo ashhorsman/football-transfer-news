@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import TransferNews, Club, Player, Manager, FollowedClub, FollowedPlayer, FollowedManager
+from .models import TransferNews, Club, Player, Manager
 
 class TransferNewsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -19,19 +19,4 @@ class PlayerSerializer(serializers.ModelSerializer):
 class ManagerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manager
-        fields = '__all__'
-
-class FollowedClubSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FollowedClub
-        fields = '__all__'
-
-class FollowedPlayerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FollowedPlayer
-        fields = '__all__'
-
-class FollowedManagerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FollowedManager
         fields = '__all__'

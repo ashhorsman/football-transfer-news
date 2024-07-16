@@ -70,19 +70,19 @@ class UnfollowManager(generics.DestroyAPIView):
 
 class GeneralFeed(views.APIView):
     permission_classes = [permissions.IsAuthenticated]
-    
+
     def get(self, request, *args, **kwargs):
         user = request.user
         followed_clubs = FollowedClub.objects.filter(user=user).values_list('club_id', flat=True)
         followed_players = FollowedPlayer.objects.filter(user=user).values_list('player_id', flat=True)
         followed_managers = FollowedManager.objects.filter(user=user).values_list('manager_id', flat=True)
-        
+
         queryset = TransferNews.objects.filter(
             models.Q(club_id__in=followed_clubs) |
             models.Q(player_id__in=followed_players) |
             models.Q(manager_id__in=followed_managers) |
             models.Q(is_general=True)
         ).distinct()
-        
+
         serializer = TransferNewsSerializer(queryset, many=True)
         return Response(serializer.data)
