@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Football Transfer News</title>
+</head>
+<body>
+    <h1>Latest Transfer News</h1>
+    <ul>
+        {% for item in news %}
+            <li>
+                <h2>{{ item.headline }}</h2>
+                <p>{{ item.content }}</p>
+                <p><em>Published at: {{ item.published_at }}</em></p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
